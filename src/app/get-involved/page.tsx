@@ -318,7 +318,7 @@ export default function GetInvolvedPage() {
               Get in Touch
             </h2>
             <p className="text-lg text-gray-600">
-              Have questions about volunteering or getting involved? We'd love to hear from you.
+              Have questions about volunteering or getting involved? We&apos;d love to hear from you.
             </p>
           </div>
 

@@ -43,7 +43,7 @@ export default function Contact() {
             Contact Us
           </h1>
           <p className="text-xl md:text-2xl max-w-3xl mx-auto">
-            Get in touch with us. We're here to help and answer any questions you may have.
+            Get in touch with us. We&apos;re here to help and answer any questions you may have.
           </p>
         </div>
       </section>

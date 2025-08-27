@@ -8,9 +8,7 @@ import {
   Home as HomeIcon, 
   GraduationCap, 
   Activity,
-  ChevronRight,
-  Star,
-  Camera
+  ChevronRight
 } from 'lucide-react';
 import SuccessStoriesCarousel from '@/components/SuccessStoriesCarousel';
 
@@ -53,7 +51,7 @@ export default function Home() {
     {
       name: "Priya Sharma",
       role: "Mother of a differently-abled child",
-      content: "The trust has been a blessing for our family. They provided medical care and education support that we couldn't afford. My daughter now receives proper therapy and has improved significantly.",
+      content: "The trust has been a blessing for our family. They provided medical care and education support that we couldn&apos;t afford. My daughter now receives proper therapy and has improved significantly.",
       rating: 5,
       image: "/assets/images/gallery/1.jpeg"
     },
@@ -247,7 +245,7 @@ export default function Home() {
               Glimpses of Our Work
             </h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              See the real impact we're making in the community
+              See the real impact we&apos;re making in the community
             </p>
           </div>
           

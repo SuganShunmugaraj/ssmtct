@@ -1,14 +1,11 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { 
   Heart, 
   Users, 
   Award, 
   Star,
-  ChevronRight,
-  Camera,
   TrendingUp,
-  Calendar
+  Camera
 } from 'lucide-react';
 
 export default function Impact() {
@@ -32,7 +29,7 @@ export default function Impact() {
     {
       name: "Priya Sharma",
       role: "Mother of a differently-abled child",
-      story: "The trust has been a blessing for our family. They provided medical care and education support that we couldn't afford. My child now receives proper therapy and education.",
+      story: "The trust has been a blessing for our family. They provided medical care and education support that we couldn&apos;t afford. My child now receives proper therapy and education.",
       image: "/assets/images/gallery/1.jpeg",
       rating: 5
     },
@@ -84,7 +81,7 @@ export default function Impact() {
             Our Impact & Stories
           </h1>
           <p className="text-xl md:text-2xl max-w-3xl mx-auto">
-            Real stories of transformation and the positive impact we've made in the lives of the differently-abled community.
+            Real stories of transformation and the positive impact we&apos;ve made in the lives of the differently-abled community.
           </p>
         </div>
       </section>
@@ -97,7 +94,7 @@ export default function Impact() {
               Our Impact in Numbers
             </h2>
             <p className="text-lg text-gray-600">
-              The real difference we've made in the community
+              The real difference we&apos;ve made in the community
             </p>
           </div>
           
@@ -143,7 +140,7 @@ export default function Impact() {
                       <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
-                  <p className="text-gray-700 mb-4 italic">"{story.story}"</p>
+                  <p className="text-gray-700 mb-4 italic">&ldquo;{story.story}&rdquo;</p>
                   <div>
                     <div className="font-semibold text-gray-900">{story.name}</div>
                     <div className="text-gray-600 text-sm">{story.role}</div>

@@ -1,4 +1,4 @@
-import { Target, Building, Smartphone, Users, Heart, ArrowRight } from 'lucide-react';
+import { Target, Building, Smartphone, Heart, ArrowRight } from 'lucide-react';
 
 export default function FutureGoalsPage() {
   const plannedExpansions = [
@@ -61,9 +61,9 @@ export default function FutureGoalsPage() {
               Our Dream
             </h2>
             <p className="text-xl text-gray-700 italic leading-relaxed">
-              "Our dream is to see every differently-abled person live with independence and dignity. 
+              &ldquo;Our dream is to see every differently-abled person live with independence and dignity. 
               We envision a world where barriers are broken, opportunities are equal, and every 
-              individual has the chance to reach their full potential."
+              individual has the chance to reach their full potential.&rdquo;
             </p>
           </div>
         </div>
