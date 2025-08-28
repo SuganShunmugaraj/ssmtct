@@ -1,16 +1,21 @@
+'use client';
+
 import Link from 'next/link';
-import { 
-  Heart, 
-  Users, 
-  Stethoscope, 
-  BookOpen, 
-  Clock, 
-  Home as HomeIcon, 
-  GraduationCap, 
+import {
+  Users,
+  Stethoscope,
+  BookOpen,
+  Clock,
+  Home as HomeIcon,
+  GraduationCap,
   Activity,
-  ChevronRight
+  ChevronRight,
+  X,
+  CreditCard,
+  Smartphone
 } from 'lucide-react';
 import SuccessStoriesCarousel from '@/components/SuccessStoriesCarousel';
+import { useState } from 'react';
 
 export default function Home() {
   const impactStats = [
@@ -80,6 +85,29 @@ export default function Home() {
     { src: '/assets/images/gallery/6.jpeg', alt: 'Gallery Image 6', title: 'Trust Activities' }
   ];
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    amount: ''
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -98,7 +126,7 @@ export default function Home() {
                 <p className="text-sm text-gray-600">பலரின் வாழ்க்கையில் பெரிய மாற்றம்</p>
               </div>
               
-              <form className="space-y-4">
+                              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                     Full Name *
@@ -107,6 +135,8 @@ export default function Home() {
                     type="text"
                     id="name"
                     name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
                     required
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
                     placeholder="Enter your full name"
@@ -121,6 +151,8 @@ export default function Home() {
                     type="tel"
                     id="phone"
                     name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
                     required
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
                     placeholder="Enter your phone number"
@@ -131,20 +163,18 @@ export default function Home() {
                   <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-1">
                     Donation Amount (₹) *
                   </label>
-                  <select
+                  <input
+                    type="number"
                     id="amount"
                     name="amount"
+                    value={formData.amount}
+                    onChange={handleInputChange}
                     required
+                    min="1"
+                    step="1"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                  >
-                    <option value="">Select amount</option>
-                    <option value="500">₹500</option>
-                    <option value="1000">₹1,000</option>
-                    <option value="2500">₹2,500</option>
-                    <option value="5000">₹5,000</option>
-                    <option value="10000">₹10,000</option>
-                    <option value="custom">Custom Amount</option>
-                  </select>
+                    placeholder="Enter amount in ₹"
+                  />
                 </div>
                 
                 <button
@@ -170,8 +200,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* About Section */}
           <div className="text-center mb-20">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 mb-6">
-              <Heart className="h-8 w-8 text-red-600" />
+            <div className="inline-flex items-center justify-center mb-6">
+              <img 
+                src="/assets/images/logo.png" 
+                alt="Sri Sandhoshi Madha Charitable Trust Logo" 
+                className="h-24 w-auto"
+              />
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               About Sri Sandhoshi Madha Group of Institutions
@@ -309,36 +343,225 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-24 bg-gradient-to-br from-red-600 to-red-700 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-10"></div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/20 mb-8">
-            <Heart className="h-10 w-10 text-white" />
+      {/* Leadership & Team Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Our Leadership & Team
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Meet the dedicated leaders and compassionate team members who drive our mission forward
+            </p>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold mb-8">
-            Join Us in Making a Difference
-          </h2>
-          <p className="text-2xl mb-12 max-w-4xl mx-auto leading-relaxed">
-            Your support helps us provide free services to the differently-abled community. 
-            Every donation makes a real impact.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link
-              href="/donate"
-              className="bg-white text-red-600 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:-translate-y-2"
-            >
-              Donate Now
-            </Link>
-            <Link
-              href="/get-involved"
-              className="border-3 border-white text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white hover:text-red-600 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:-translate-y-2"
-            >
-              Get Involved
-            </Link>
+
+          {/* Leadership Section */}
+          <div className="mb-20">
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                Leadership Team
+              </h3>
+              <p className="text-lg text-gray-600">
+                Visionary leaders guiding our charitable mission
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {[1, 2, 3, 4].map((index) => (
+                <div key={index} className="group relative">
+                  <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3">
+                    <div className="aspect-square">
+                      <img
+                        src={`/assets/images/leaders/${index}.jpeg`}
+                        alt={`Leader ${index}`}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                      <h4 className="text-lg font-bold mb-1">Trust Leader</h4>
+                      <p className="text-sm text-gray-200">Dedicated to Service</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Team Members Section */}
+          <div>
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                Our Team Members
+              </h3>
+              <p className="text-lg text-gray-600">
+                Compassionate individuals working together for the community
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 md:gap-6">
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21].map((index) => (
+                <div key={index} className="group relative">
+                  <div className="relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div className="aspect-square">
+                      <img
+                        src={`/assets/images/members/${index}.jpeg`}
+                        alt={`Team Member ${index}`}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-3 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                      <p className="text-xs font-semibold">Team Member</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Join Our Team CTA */}
+          <div className="text-center mt-16">
+            <div className="bg-gradient-to-r from-red-600 to-red-700 rounded-2xl p-8 md:p-12 text-white">
+              <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                Join Our Mission
+              </h3>
+              <p className="text-lg mb-6 max-w-2xl mx-auto">
+                Be part of our dedicated team and help us make a difference in the lives of the differently-abled community.
+              </p>
+              <Link
+                href="/get-involved"
+                className="inline-flex items-center bg-white text-red-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              >
+                Get Involved
+                <ChevronRight className="ml-2 h-5 w-5" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Donation Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <h2 className="text-2xl font-bold text-gray-900">Complete Your Donation</h2>
+              <button
+                onClick={closeModal}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6">
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Left Column - Bank Payment Details */}
+                <div className="space-y-6">
+                  <div className="flex items-center mb-4">
+                    <CreditCard className="h-8 w-8 text-green-600 mr-3" />
+                    <h3 className="text-xl font-bold text-gray-900">Bank Transfer Details</h3>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-6 space-y-4">
+                    <div>
+                      <span className="font-semibold text-gray-700">Account Name:</span>
+                      <p className="text-gray-900 mt-1">Shri Shanthoshi Madha Temple Charitable Trust</p>
+                    </div>
+                    <div>
+                      <span className="font-semibold text-gray-700">Account Number:</span>
+                      <p className="text-gray-900 mt-1">41933008379</p>
+                    </div>
+                    <div>
+                      <span className="font-semibold text-gray-700">Bank:</span>
+                      <p className="text-gray-900 mt-1">State Bank of India, Muthu Nagar Branch, Thoothukudi – 628008</p>
+                    </div>
+                    <div>
+                      <span className="font-semibold text-gray-700">IFSC Code:</span>
+                      <p className="text-gray-900 mt-1">SBIN0001463</p>
+                    </div>
+                  </div>
+
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                      </div>
+                      <p className="text-green-800 text-sm ml-3">
+                        Your donations are eligible for tax exemption under Section 80G of the Income Tax Act.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Column - UPI Details */}
+                <div className="space-y-6">
+                  <div className="flex items-center mb-4">
+                    <Smartphone className="h-8 w-8 text-blue-600 mr-3" />
+                    <h3 className="text-xl font-bold text-gray-900">UPI Payment</h3>
+                  </div>
+
+                  <div className="bg-blue-50 rounded-lg p-6 space-y-4">
+                    <div>
+                      <span className="font-semibold text-gray-700">UPI ID:</span>
+                      <p className="text-gray-900 mt-1">shrishanthoshi2023@okicici</p>
+                    </div>
+                    <div>
+                      <span className="font-semibold text-gray-700">UPI App:</span>
+                      <p className="text-gray-900 mt-1">Any UPI-enabled app (Google Pay, PhonePe, Paytm, etc.)</p>
+                    </div>
+                  </div>
+
+                  {/* UPI QR Code Placeholder */}
+                  <div className="bg-white border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                    <div className="w-48 h-48 bg-gray-100 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                      <div className="text-center">
+                        <Smartphone className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+                        <p className="text-gray-500 text-sm">UPI QR Code</p>
+                        <p className="text-gray-400 text-xs">Image will be added here</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 text-sm">
+                      Scan this QR code with any UPI app to make instant payment
+                    </p>
+                  </div>
+
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                      </div>
+                      <p className="text-blue-800 text-sm ml-3">
+                        UPI payments are instant and secure. You&apos;ll receive a confirmation immediately.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Modal Footer */}
+              <div className="mt-8 pt-6 border-t border-gray-200 flex flex-col sm:flex-row gap-4 justify-end">
+                <button
+                  onClick={closeModal}
+                  className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                >
+                  Close
+                </button>
+                <Link
+                  href="/donate"
+                  className="px-6 py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors text-center"
+                >
+                  View More Options
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

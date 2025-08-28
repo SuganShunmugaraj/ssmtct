@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, Heart } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,7 +23,11 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <Heart className="h-8 w-8 text-red-600 mr-3" />
+              <img 
+                src="/assets/images/logo.png" 
+                alt="Sri Sandhoshi Madha Charitable Trust Logo" 
+                className="h-12 w-auto mr-3"
+              />
               <div>
                 <h1 className="text-xl font-bold text-gray-900">
                   Sri Sandhoshi Madha

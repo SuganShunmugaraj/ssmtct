@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Heart, Mail, Phone, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -95,7 +95,11 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center mb-4 md:mb-0">
-              <Heart className="h-5 w-5 text-red-500 mr-2" />
+              <img 
+                src="/assets/images/logo.png" 
+                alt="Sri Sandhoshi Madha Charitable Trust Logo" 
+                className="h-8 w-auto mr-2"
+              />
               <span className="text-sm">
                 © 2024 Shri Shanthoshi Madha Temple Charitable Trust. All rights reserved.
               </span>
